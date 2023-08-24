@@ -1,8 +1,29 @@
 <div class="container-fluid d-flex justify-content-center align-items-center" id="gameBackground">
-  <div class="card p-5">
+  <!-- Gamae Card Start  -->
+  <div class="card bg-body-tertiary border rounded shadow p-5" style="width: 50%;">
 
+    <div class="d-flex justify-content-between m-0 p-0" style="height: 50px;">
+      <div class="d-flex align-items-center text-lg" > 
+        <div *ngFor="let heart of heartsArray; let i = index">
+          <i class="fa-solid fa-heart text-primary-emphasis"></i>
+        </div>
+      </div>
+      
+       <div class="w-50">
+        <p class="text-center m-0 p-0" style="font-size: 0.9rem;">Star</p>
+      
+        <div class="progress w-100" role="progressbar" [style.width]="getProgressWidth()"  [attr.aria-valuenow]="getProgressValue()" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-warning progress-bar-striped" [style.width]="getProgressWidth()"
+           [@stripeAnimation]="getProgressValue()" ></div>
+        </div>
+       </div>
+    
+      <div class="text-sm">
+        <p >level :<span>{{level}}</span></p>
+      </div>
+    </div>
     <div id="question" class="text-center">
-      <h3>Question ?</h3>
+      <h1 class="fw-bolder text-info-emphasis">Question ?</h1>
       <span>{{ num1 }}</span>
       <span>{{ operator1 }}</span>
       <span>{{ num2 }}</span>
@@ -10,18 +31,61 @@
       <span>{{ num3 }}</span>
       <span>=</span>
       <span>?</span>
-
-
-
-
     </div>
-    <div>
-      <p  *ngIf="showWrongAnswerMessage" class="text-danger"> WRONG ANSWER</p>
+    <div style="height: 50px;">
+      <p *ngIf="showWrongAnswerMessage" class="text-danger"> WRONG ANSWER</p>
     </div>
-    <div class="d-flex flex-wrap">
+    <div class="d-flex justify-content-start">
+      <p class="text-danger-emphasis">Choose Answer =</p>
+    </div>
+    <div [@increDecre]="answerOptions.length" class="d-flex flex-wrap justify-content-center">
+      
       <div *ngFor="let option of answerOptions;let i=index;" class="m-2">
-        <button (click)="checkAnswer(option,i)" class="btn btn-outline-primary" style="width: 80px; height: 50px">{{ option }}</button>
+        <button (click)="checkAnswer(option,i)"
+        [ngClass]="{'btn-incorrect': showWrongAnswerMessage && option !== correctAnswer && optionClickedIndex === i}"
+         class="btn btn-outline-warning border border-warning-subtle rounded shadow fw-bolder fs-5" style="width: 80px; height: 50px">{{ option }}</button>
       </div>
     </div>
   </div>
+
+  <!-- Game Card End  -->
 </div>
+
+
+<!-- Congrats Modal Box Start -->
+<ng-template #congratsModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Congratulations!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    You answered correctly! Well done!
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="continueGame()">Continue</button>
+    <button type="button" class="btn btn-secondary" (click)="goToHome()">Home</button>
+  </div>
+</ng-template>
+<!-- Congrats Modal Box End -->
+
+
+<!-- GameOver Modal box  -->
+<ng-template #gameOverModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Game Over</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    You have run out of lives. Better luck next time!
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="restartGame()">Restart</button>
+    <button type="button" class="btn btn-secondary" (click)="goToHome()">Home</button>
+  </div>
+</ng-template>
+
+<!-- GameOver Modal box  -->

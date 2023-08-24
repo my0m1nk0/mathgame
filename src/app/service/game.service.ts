@@ -18,11 +18,19 @@ export class GameService {
 
   generateIncorrectAnswers(correctAnswer: number): number[] {
     const incorrectAnswers = [];
+    const usedIncorrectAnswers = new Set();
+
     for (let i = 0; i < 3; i++) {
-      const offset = this.generateRandomNumber(1, 8);
-      const incorrectAnswer = correctAnswer + offset;
+      let incorrectAnswer;
+      do {
+        const offset = this.generateRandomNumber(1, 8);
+        incorrectAnswer = correctAnswer + offset;
+      } while (usedIncorrectAnswers.has(incorrectAnswer)); 
+
+      usedIncorrectAnswers.add(incorrectAnswer);
       incorrectAnswers.push(incorrectAnswer);
     }
+
     return incorrectAnswers;
   }
 }

@@ -4,6 +4,7 @@
   span{
     font-size: 3rem;
     padding: 10px;
+    text-shadow: 2px 2px burlywood;
   }
 }
 
@@ -15,4 +16,19 @@ p{
   font-size: 2rem;
   text-align: center;
 }
+}
+.btn-incorrect {
+  background-color: red;
+}
+@keyframes stripeAnimation {
+  0% {
+    background-position: 200%;
+  }
+  100% {
+    background-position: -200%;
+  }
+}
+
+.progress-bar {
+  animation: stripeAnimation 10s linear infinite; 
 }
