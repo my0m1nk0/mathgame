@@ -1,7 +1,7 @@
 <div class="container-fluid d-flex justify-content-center align-items-center" id="gameBackground">
   <!-- Gamae Card Start  -->
-  <div class="card bg-body-tertiary border rounded shadow p-4"
-       [ngClass]="{'custom-background-color': isCardBackgroundColorChanged}"style="width: 50%;">
+  <div class="bg-body-tertiary border rounded shadow p-md-4 p-2 w-50 game"
+       [ngClass]="{'custom-background-color': isCardBackgroundColorChanged}">
     <div class="d-flex justify-content-between">
       <p (click)="changeBackgroundColor()" class="text-xl-start"><i class="fa-solid fa-palette"></i></p>
       <p (click)="goToHome()" class="text-xl-end"><i class="fa-solid fa-house"></i></p>

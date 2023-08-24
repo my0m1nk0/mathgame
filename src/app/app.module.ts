@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import {GameService} from "./service/game.service";
 import { HomeComponent } from './home/home.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    NgbModule
+    BrowserAnimationsModule
   ],
   providers: [GameService],
   bootstrap: [AppComponent]
