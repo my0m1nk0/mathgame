@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
   animations:[
+    //Delete Button Animation
     trigger('increDecre',[
       transition(':increment',[
         query(':enter',[
@@ -26,6 +27,7 @@ import { Router } from '@angular/router';
         })
       ])
   ]),
+    //Wrong Answer bg change
   trigger('highlightIncorrect', [
     transition('* => true', [
       query('.btn-incorrect', [
@@ -34,6 +36,7 @@ import { Router } from '@angular/router';
       ]),
     ]),
   ]),
+    //Progress Animation
   trigger('stripeAnimation', [
     transition('* => *', [
       animate('5s', keyframes([
@@ -48,6 +51,7 @@ export class GameComponent{
 
   @ViewChild('congratsModal') congratsModal: TemplateRef<any>;
   @ViewChild('gameOverModal') gameOverModal: TemplateRef<any>;
+
   num1: number;
   num2: number;
   num3: number;
@@ -72,7 +76,7 @@ export class GameComponent{
     this.updateHeartsArray();
   }
 
-
+//Animation Function
   getProgressValue(): number {
     return this.currentProgress;
   }
@@ -87,6 +91,8 @@ export class GameComponent{
   changeBackgroundColor() {
     this.isCardBackgroundColorChanged = !this.isCardBackgroundColorChanged;
   }
+
+  //Create Question
   generateQuestion(): void {
     this.num1 = this.gameService.generateRandomNumber(1, 9);
     this.num2 = this.gameService.generateRandomNumber(1, 9);
@@ -103,11 +109,13 @@ export class GameComponent{
 
     this.shuffleArray(this.answerOptions);
   }
-
+// Remove False Answer
   removeAnswerOption(index: number): void {
 
     this.answerOptions.splice(index, 1);
   }
+
+  //Check Answer
   checkAnswer(selectedAnswer: number,selectIndex:number): void {
     if (selectedAnswer === this.correctAnswer) {
       this.showWrongAnswerMessage = false;
@@ -130,6 +138,8 @@ export class GameComponent{
       }
     }
   }
+
+  //Continue Game
   continueGame(): void {
     this.modalService.dismissAll();
     this.generateQuestion();
@@ -137,10 +147,13 @@ export class GameComponent{
     this.currentProgress +=5
   }
 
+  //Back Home
   goToHome(): void {
     this.modalService.dismissAll();
     this.route.navigate(['/home']);
   }
+
+  //Restart Game and add Life
   restartGame(): void {
     this.modalService.dismissAll();
     this.showWrongAnswerMessage = false;
@@ -150,6 +163,7 @@ export class GameComponent{
     this.updateHeartsArray();
   }
 
+  //mix answer
   private shuffleArray(array: any[]): void {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
