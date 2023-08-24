@@ -1,0 +1,27 @@
+<div class="container-fluid d-flex justify-content-center align-items-center" id="gameBackground">
+  <div class="card p-5">
+
+    <div id="question" class="text-center">
+      <h3>Question ?</h3>
+      <span>{{ num1 }}</span>
+      <span>{{ operator1 }}</span>
+      <span>{{ num2 }}</span>
+      <span>{{ operator2 }}</span>
+      <span>{{ num3 }}</span>
+      <span>=</span>
+      <span>?</span>
+
+
+
+
+    </div>
+    <div>
+      <p  *ngIf="showWrongAnswerMessage" class="text-danger"> WRONG ANSWER</p>
+    </div>
+    <div class="d-flex flex-wrap">
+      <div *ngFor="let option of answerOptions;let i=index;" class="m-2">
+        <button (click)="checkAnswer(option,i)" class="btn btn-outline-primary" style="width: 80px; height: 50px">{{ option }}</button>
+      </div>
+    </div>
+  </div>
+</div>

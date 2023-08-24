@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#background{
+  height: 100vh;
+  background-color:rgba(240, 240, 240,0.5) ;
+}
+#home div i{
+  font-size: 2rem;
+}
+#home div span {
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+}
