@@ -22,13 +22,22 @@ p{
 }
 @keyframes stripeAnimation {
   0% {
-    background-position: 200%;
+    background-position: -200%;
   }
   100% {
-    background-position: -200%;
+    background-position: 200%;
   }
 }
 
 .progress-bar {
-  animation: stripeAnimation 10s linear infinite; 
+  animation: stripeAnimation 10s linear infinite;
+}
+.custom-font{
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 1.5rem;
+
+}
+.custom-background-color {
+  background-color: slategrey !important;
+
 }

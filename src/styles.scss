@@ -4,10 +4,15 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-image: url("../src/assets/image/bg-img.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 #background{
   height: 100vh;
-  background-color:rgba(240, 240, 240,0.5) ;
+
+
 }
 #home div i{
   font-size: 2rem;

@@ -61,7 +61,8 @@ export class GameComponent{
   heartsArray: any[];
   level:number=1;
   startingProgress: number = 0;
-  currentProgress: number = this.startingProgress; 
+  currentProgress: number = this.startingProgress;
+  isCardBackgroundColorChanged: boolean = false;
 
 
   constructor(private gameService: GameService,
@@ -83,7 +84,9 @@ export class GameComponent{
   updateHeartsArray(): void {
     this.heartsArray = Array(this.life).fill(0);
   }
-
+  changeBackgroundColor() {
+    this.isCardBackgroundColorChanged = !this.isCardBackgroundColorChanged;
+  }
   generateQuestion(): void {
     this.num1 = this.gameService.generateRandomNumber(1, 9);
     this.num2 = this.gameService.generateRandomNumber(1, 9);
@@ -109,7 +112,7 @@ export class GameComponent{
     if (selectedAnswer === this.correctAnswer) {
       this.showWrongAnswerMessage = false;
       this.modalService.open(this.congratsModal,{centered:true,backdrop:'static'})
-    
+
     } else {
       this.showWrongAnswerMessage = true;
       this.optionClickedIndex= selectIndex;
@@ -128,23 +131,23 @@ export class GameComponent{
     }
   }
   continueGame(): void {
-    this.modalService.dismissAll(); // Close the modal
+    this.modalService.dismissAll();
     this.generateQuestion();
     this.level += 1;
     this.currentProgress +=5
   }
 
   goToHome(): void {
-    this.modalService.dismissAll(); // Close the modal
-    this.route.navigate(['/home']); // Navigate to the home page
+    this.modalService.dismissAll();
+    this.route.navigate(['/home']);
   }
   restartGame(): void {
-    this.modalService.dismissAll(); 
+    this.modalService.dismissAll();
     this.showWrongAnswerMessage = false;
     this.level=1;
-    this.life = 3; // Reset life
-    this.generateQuestion(); // Generate a new question to restart the game
-    this.updateHeartsArray(); // Update heartsArray
+    this.life = 3;
+    this.generateQuestion();
+    this.updateHeartsArray();
   }
 
   private shuffleArray(array: any[]): void {
