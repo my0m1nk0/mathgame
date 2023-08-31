@@ -7,8 +7,8 @@
       <p (click)="goToHome()" class="text-xl-end"><i class="fa-solid fa-house"></i></p>
     </div>
     <div class="d-flex justify-content-between m-0 p-3" style="height: 50px;">
-      <div class="d-flex align-items-center text-lg" >
-        <div *ngFor="let heart of heartsArray; let i = index">
+      <div class="d-flex text-center text-lg " >
+        <div *ngFor="let heart of heartsArray; let i = index" class="mt-3">
           <i class="fa-solid fa-heart text-primary-emphasis"></i>
         </div>
       </div>
